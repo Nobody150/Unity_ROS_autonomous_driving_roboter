@@ -8,13 +8,11 @@ public class RosSubscriberExample : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("TEst");
         ROSConnection.GetOrCreateInstance().Subscribe<RosColor>("color", ColorChange);
     }
 
     void ColorChange(RosColor colorMessage)
     {
-        Debug.Log("TEst");
         cube.GetComponent<Renderer>().material.color = new Color32((byte)colorMessage.r, (byte)colorMessage.g, (byte)colorMessage.b, (byte)colorMessage.a);
     }
 }

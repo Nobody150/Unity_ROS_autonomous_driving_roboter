@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class CarController : MonoBehaviour
     private float currentSteerAngle;
     private float currentbreakForce;
     private bool isBreaking;
+
+    InputMaster inputMaster;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
@@ -26,41 +29,87 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
 
+    Vector2 steer; 
+    Vector2 drive; 
+
+    float forward;
+    float backward;
+    float left;
+    float right;
+
+
+
+    void Awake(){
+        inputMaster = new InputMaster();
+        //Controler
+        inputMaster.Car.Steer.performed += ctx => steer = ctx.ReadValue<Vector2>();
+        inputMaster.Car.Break.started += ctx => isBreaking = true;
+        inputMaster.Car.Break.canceled += ctx => isBreaking = false;
+        inputMaster.Car.Drive.performed += ctx => drive = ctx.ReadValue<Vector2>();
+
+        //Keyboard
+        inputMaster.Car.Forward.performed += ctx => forward = 1;
+        inputMaster.Car.Forward.canceled += ctx => forward = 0;
+
+        inputMaster.Car.Backward.started += ctx => backward = 1;
+        inputMaster.Car.Backward.canceled += ctx => backward = 0;
+
+        inputMaster.Car.Left.started += ctx => left = 1;
+        inputMaster.Car.Left.canceled += ctx => left = 0;
+
+        inputMaster.Car.Right.started += ctx => right = 1;
+        inputMaster.Car.Right.canceled += ctx => right = 0;
+
+        inputMaster.Car.Break_Keyboard.started += ctx => isBreaking = true;
+        inputMaster.Car.Break_Keyboard.canceled += ctx => isBreaking = false;
+    }
+
     private void FixedUpdate()
     {
-        GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+
     }
 
+    
 
-    private void GetInput()
-    {
-        horizontalInput = Input.GetAxis(HORIZONTAL);
-        verticalInput = Input.GetAxis(VERTICAL);
-        isBreaking = Input.GetKey(KeyCode.Space);
+    void OnEnable(){
+        inputMaster.Car.Enable();
+    }
+
+    void OnDisable(){
+        inputMaster.Car.Disable();
     }
 
     private void HandleMotor()
     {
+        float force = drive.y;
+        if (forward == 1 || backward == 1){
+            force = forward - backward;
+        }
 
-        rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        rearRightWheelCollider.motorTorque = verticalInput * motorForce;
+        rearLeftWheelCollider.motorTorque = force * motorForce;
+        rearRightWheelCollider.motorTorque = force * motorForce;
         currentbreakForce = isBreaking ? breakForce : 0f;
         ApplyBreaking();       
     }
 
     private void ApplyBreaking()
     {
+        
         frontRightWheelCollider.brakeTorque = currentbreakForce;
         rearLeftWheelCollider.brakeTorque = currentbreakForce;
         rearRightWheelCollider.brakeTorque = currentbreakForce;
     }
 
-    private void HandleSteering()
-    {
-        currentSteerAngle = maxSteerAngle * horizontalInput;
+    private void HandleSteering() {
+        float direction = steer.x;
+        if (left == 1 || right == 1){
+            direction = right - left;
+        }
+    
+        currentSteerAngle = maxSteerAngle * direction;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
 

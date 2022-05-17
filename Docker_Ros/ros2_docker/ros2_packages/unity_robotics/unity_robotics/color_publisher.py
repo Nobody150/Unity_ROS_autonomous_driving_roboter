@@ -5,7 +5,7 @@ import rclpy
 
 from rclpy.node import Node
 
-from unity_robotics_demo_msgs.msg import UnityColor
+from unity_robotics_msgs.msg import UnityColor
 
 
 class ColorPublisher(Node):

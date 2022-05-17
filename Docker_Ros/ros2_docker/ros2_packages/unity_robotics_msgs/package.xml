@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>unity_robotics_demo_msgs</name>
+  <name>unity_robotics_msgs</name>
   <version>0.0.1</version>
   <description>Messages used by ROS-Unity Integration tutorial (ROS2 version)</description>
   <maintainer email="unity-robotics@unity.com">Unity Robotics</maintainer>

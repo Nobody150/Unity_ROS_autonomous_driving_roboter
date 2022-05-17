@@ -3,7 +3,7 @@
 import random
 import rclpy
 
-from unity_robotics_demo_msgs.srv import CameraService
+from unity_robotics_msgs.srv import CameraService
 
 from rclpy.node import Node
 
@@ -15,7 +15,7 @@ class CameraServiceNode(Node):
 
     def new_camera_callback(self, request, response):
         response.output.rawimagedata = request.rawimagedata
-        self.get_logger().info('CameraData - %f' % (self.request.rawimagedata))
+        self.get_logger().info('CameraData - %f' % (self.request))
         return response
 
 

@@ -3,7 +3,7 @@
 import random
 import rclpy
 
-from unity_robotics_demo_msgs.srv import PositionService
+from unity_robotics_msgs.srv import PositionService
 
 from rclpy.node import Node
 

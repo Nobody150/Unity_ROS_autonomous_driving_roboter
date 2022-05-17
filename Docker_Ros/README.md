@@ -11,7 +11,7 @@ Das Starten des Containers über den Befehl
 * Volume Verzeichnis auf den `./ros2_docker/ros2_packages/` des Hostsystems setzen
 
 ```
-docker run -d -it --rm -name ros_docker -p 10000:10000 -v [~Volume]:/home/dev_ws/src/ ros_docker
+docker run -d -it --rm --name ros_docker -p 10000:10000 -v [~Volume]:/home/dev_ws/src/ ros_docker
 ```
 
 ## im Docker Container

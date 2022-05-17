@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(unity_robotics_demo_msgs)
+project(unity_robotics_msgs)
 
 # find dependencies
 find_package(rosidl_default_generators REQUIRED)

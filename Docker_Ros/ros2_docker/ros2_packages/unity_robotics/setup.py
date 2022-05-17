@@ -3,7 +3,7 @@ import os
 
 from setuptools import setup
 
-package_name = 'unity_robotics_demo'
+package_name = 'unity_robotics'
 
 setup(
     name=package_name,
@@ -22,9 +22,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'color_publisher = unity_robotics_demo.color_publisher:main',
-            'position_service = unity_robotics_demo.position_service:main',
-            'camera_service = unity_robotics_demo.camera_service:main',
+            'color_publisher = unity_robotics.color_publisher:main',
+            'position_service = unity_robotics.position_service:main',
+            'camera_service = unity_robotics.camera_service:main',
         ],
     },
 )
