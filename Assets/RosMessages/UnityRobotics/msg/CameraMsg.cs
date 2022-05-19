@@ -5,22 +5,22 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.UnityRoboticsDemo
+namespace RosMessageTypes.UnityRobotics
 {
     [Serializable]
     public class CameraMsg : Message
     {
-        public const string k_RosMessageName = "unity_robotics_demo_msgs/Camera";
+        public const string k_RosMessageName = "unity_robotics_msgs/Camera";
         public override string RosMessageName => k_RosMessageName;
 
-        public byte[] rawimagedata;
+        public string rawimagedata;
 
         public CameraMsg()
         {
-            this.rawimagedata = new byte[0];
+            this.rawimagedata = "";
         }
 
-        public CameraMsg(byte[] rawimagedata)
+        public CameraMsg(string rawimagedata)
         {
             this.rawimagedata = rawimagedata;
         }
@@ -29,19 +29,18 @@ namespace RosMessageTypes.UnityRoboticsDemo
 
         private CameraMsg(MessageDeserializer deserializer)
         {
-            deserializer.Read(out this.rawimagedata, sizeof(byte), deserializer.ReadLength());
+            deserializer.Read(out this.rawimagedata);
         }
 
         public override void SerializeTo(MessageSerializer serializer)
         {
-            serializer.WriteLength(this.rawimagedata);
             serializer.Write(this.rawimagedata);
         }
 
         public override string ToString()
         {
             return "CameraMsg: " +
-            "\nrawimagedata: " + System.String.Join(", ", rawimagedata.ToList());
+            "\nrawimagedata: " + rawimagedata.ToString();
         }
 
 #if UNITY_EDITOR

@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.UnityRoboticsDemo
+namespace RosMessageTypes.UnityRobotics
 {
     [Serializable]
     public class ObjectPoseServiceRequest : Message
     {
-        public const string k_RosMessageName = "unity_robotics_demo_msgs/ObjectPoseService";
+        public const string k_RosMessageName = "unity_robotics_msgs/ObjectPoseService";
         public override string RosMessageName => k_RosMessageName;
 
         public string object_name;

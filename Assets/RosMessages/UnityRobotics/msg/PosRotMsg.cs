@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.UnityRoboticsDemo
+namespace RosMessageTypes.UnityRobotics
 {
     [Serializable]
     public class PosRotMsg : Message
     {
-        public const string k_RosMessageName = "unity_robotics_demo_msgs/PosRot";
+        public const string k_RosMessageName = "unity_robotics_msgs/PosRot";
         public override string RosMessageName => k_RosMessageName;
 
         public float pos_x;

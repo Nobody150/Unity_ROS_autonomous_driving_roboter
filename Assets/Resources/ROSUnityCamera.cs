@@ -1,7 +1,9 @@
 
-using RosMessageTypes.UnityRoboticsDemo;
+using RosMessageTypes.UnityRobotics;
 using UnityEngine;
 using Unity.Robotics.ROSTCPConnector;
+
+using System;
 
 public class ROSUnityCamera : MonoBehaviour
 {
@@ -37,8 +39,9 @@ public class ROSUnityCamera : MonoBehaviour
 
             byte[] rawImageData = CaptureScreenshot();
 
+            string data = Convert.ToBase64String(rawImageData);
             CameraMsg cameraMsg = new CameraMsg(
-                rawImageData
+                data
             );
 
             // Finally send the message to server_endpoint.py running in ROS

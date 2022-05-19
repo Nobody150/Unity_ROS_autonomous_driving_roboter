@@ -1,1 +1,1 @@
-byte[] rawimagedata
+string rawimagedata

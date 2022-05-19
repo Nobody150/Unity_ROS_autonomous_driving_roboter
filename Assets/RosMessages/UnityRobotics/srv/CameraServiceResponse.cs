@@ -5,31 +5,31 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.UnityRoboticsDemo
+namespace RosMessageTypes.UnityRobotics
 {
     [Serializable]
-    public class PositionServiceResponse : Message
+    public class CameraServiceResponse : Message
     {
-        public const string k_RosMessageName = "unity_robotics_demo_msgs/PositionService";
+        public const string k_RosMessageName = "unity_robotics_msgs/CameraService";
         public override string RosMessageName => k_RosMessageName;
 
-        public PosRotMsg output;
+        public CameraMsg output;
 
-        public PositionServiceResponse()
+        public CameraServiceResponse()
         {
-            this.output = new PosRotMsg();
+            this.output = new CameraMsg();
         }
 
-        public PositionServiceResponse(PosRotMsg output)
+        public CameraServiceResponse(CameraMsg output)
         {
             this.output = output;
         }
 
-        public static PositionServiceResponse Deserialize(MessageDeserializer deserializer) => new PositionServiceResponse(deserializer);
+        public static CameraServiceResponse Deserialize(MessageDeserializer deserializer) => new CameraServiceResponse(deserializer);
 
-        private PositionServiceResponse(MessageDeserializer deserializer)
+        private CameraServiceResponse(MessageDeserializer deserializer)
         {
-            this.output = PosRotMsg.Deserialize(deserializer);
+            this.output = CameraMsg.Deserialize(deserializer);
         }
 
         public override void SerializeTo(MessageSerializer serializer)
@@ -39,7 +39,7 @@ namespace RosMessageTypes.UnityRoboticsDemo
 
         public override string ToString()
         {
-            return "PositionServiceResponse: " +
+            return "CameraServiceResponse: " +
             "\noutput: " + output.ToString();
         }
 

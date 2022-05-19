@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.UnityRoboticsDemo
+namespace RosMessageTypes.UnityRobotics
 {
     [Serializable]
     public class PositionServiceRequest : Message
     {
-        public const string k_RosMessageName = "unity_robotics_demo_msgs/PositionService";
+        public const string k_RosMessageName = "unity_robotics_msgs/PositionService";
         public override string RosMessageName => k_RosMessageName;
 
         public PosRotMsg input;
