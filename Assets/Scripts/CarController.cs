@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.IO;
 
 public class CarController : MonoBehaviour
 {
@@ -13,9 +14,12 @@ public class CarController : MonoBehaviour
     private float verticalInput;
     private float currentSteerAngle;
     private float currentbreakForce;
+    private float currentmotorForce;
     private bool isBreaking;
 
     InputMaster inputMaster;
+
+    public Boolean SaveSimulationData;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
@@ -29,15 +33,21 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
 
-    Vector2 steer; 
-    Vector2 drive; 
+    private Vector2 steer; 
+    private Vector2 drive; 
 
-    float forward;
-    float backward;
-    float left;
-    float right;
+    private float forward;
+    private float backward;
+    private float left;
+    private float right;
+    private string time;
 
-
+    void Start()
+    {
+        //AssetDatabase.CreateFolder("Assets/SimulationData", System.DateTime.Now+"");
+        time = System.DateTime.Now+"";
+        time = time.Replace(":", "_");
+    }
 
     void Awake(){
         inputMaster = new InputMaster();
@@ -70,9 +80,19 @@ public class CarController : MonoBehaviour
         HandleSteering();
         UpdateWheels();
 
+        SaveInputToFile(SaveSimulationData);
+
     }
 
-    
+public int conuter;
+    void SaveInputToFile(Boolean SaveSimulationData){
+        if (SaveSimulationData){
+            StreamWriter file = new StreamWriter("./SimulationData/Data"+ time +".csv", append: true);
+            file.Write(currentSteerAngle+";"+ currentmotorForce + ";" + currentbreakForce + ";\n");
+            file.Close();
+            conuter++;
+        }
+    }
 
     void OnEnable(){
         inputMaster.Car.Enable();
@@ -91,6 +111,7 @@ public class CarController : MonoBehaviour
 
         rearLeftWheelCollider.motorTorque = force * motorForce;
         rearRightWheelCollider.motorTorque = force * motorForce;
+        currentmotorForce = force * motorForce;
         currentbreakForce = isBreaking ? breakForce : 0f;
         ApplyBreaking();       
     }
