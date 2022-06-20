@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5490,6 +5490,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6010695294d8efb47805586bec2c4122, type: 3}
   m_PrefabInstance: {fileID: 1884283607}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1891981707 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8334766278726996159, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
+  m_PrefabInstance: {fileID: 9181256432249549243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1891981708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891981707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d762479568426ca46bf4855c4c51cf50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveImageFrequency: 0.5
+  SaveImagesToFile: 1
+  resultionWidth: 848
+  resultionHeight: 480
+  sensorCamera: {fileID: 2071618362}
 --- !u!1 &1899109054
 GameObject:
   m_ObjectHideFlags: 0
@@ -5987,6 +6009,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 32863b16927e64247952a5404386cefe, type: 3}
   m_PrefabInstance: {fileID: 2044293836}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &2071618362 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 9181256431731767289, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
+  m_PrefabInstance: {fileID: 9181256432249549243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2095705936
 GameObject:
   m_ObjectHideFlags: 0
@@ -6062,6 +6089,14 @@ PrefabInstance:
     - target: {fileID: 8334766278726996158, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
       propertyPath: motorForce
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334766278726996158, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
+      propertyPath: saveDataFrequency
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334766278726996158, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
+      propertyPath: SaveSimulationData
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8334766278726996159, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
       propertyPath: m_Name
