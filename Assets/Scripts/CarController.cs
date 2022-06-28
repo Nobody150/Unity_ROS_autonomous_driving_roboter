@@ -21,6 +21,12 @@ public class CarController : MonoBehaviour
 
     public Boolean SaveSimulationData;
 
+    // Publish the cube's position and rotation every N seconds
+    public float saveDataFrequency = 1.0f;
+
+    // Used to determine how much time has elapsed since the last message was published
+    private float timeElapsed;
+
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
     [SerializeField] private float maxSteerAngle;
@@ -79,18 +85,20 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheels();
-
+        
         SaveInputToFile(SaveSimulationData);
-
     }
 
 public int conuter;
     void SaveInputToFile(Boolean SaveSimulationData){
         if (SaveSimulationData){
-            StreamWriter file = new StreamWriter("./SimulationData/Data"+ time +".csv", append: true);
-            file.Write(currentSteerAngle+";"+ currentmotorForce + ";" + currentbreakForce + ";\n");
-            file.Close();
-            conuter++;
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > saveDataFrequency) {
+                StreamWriter file = new StreamWriter("./SimulationData/Data"+ time +".csv", append: true);
+                file.Write(currentSteerAngle+";"+ currentmotorForce + ";" + currentbreakForce + ";\n");
+                file.Close();
+                conuter++;
+            }
         }
     }
 
