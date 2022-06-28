@@ -5507,7 +5507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d762479568426ca46bf4855c4c51cf50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveImageFrequency: 0.5
+  saveImageFrequency: 0.1
   SaveImagesToFile: 1
   resultionWidth: 848
   resultionHeight: 480
@@ -6092,7 +6092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8334766278726996158, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
       propertyPath: saveDataFrequency
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8334766278726996158, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
       propertyPath: SaveSimulationData
