@@ -848,6 +848,11 @@ Transform:
   m_Father: {fileID: 1558022379}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &299903602 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 9181256431731767289, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
+  m_PrefabInstance: {fileID: 9181256432249549243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &309040589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4370,6 +4375,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6010695294d8efb47805586bec2c4122, type: 3}
   m_PrefabInstance: {fileID: 1482243038}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1491764630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8334766278726996159, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
+  m_PrefabInstance: {fileID: 9181256432249549243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1491764631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491764630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d762479568426ca46bf4855c4c51cf50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveImageFrequency: 1
+  SaveImagesToFile: 0
+  sensorCamera: {fileID: 299903602}
+--- !u!114 &1491764632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491764630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d814623940b34479c5677b889cc84e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topicName: vehicledata
+  publishMessageFrequency: 1
 --- !u!1001 &1502499746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6062,6 +6101,10 @@ PrefabInstance:
     - target: {fileID: 8334766278726996158, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
       propertyPath: motorForce
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334766278726996158, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
+      propertyPath: SaveSimulationData
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8334766278726996159, guid: 2a77f9bd845d04b4d8ef454b1d80845a, type: 3}
       propertyPath: m_Name

@@ -25,6 +25,7 @@ setup(
             'color_publisher = unity_robotics.color_publisher:main',
             'position_service = unity_robotics.position_service:main',
             'camera_service = unity_robotics.camera_service:main',
+            'vehicledata_service = unity_robotics.vehicledata_service:main',
         ],
     },
 )

@@ -16,7 +16,7 @@ class PositionServiceNode(Node):
     def new_position_callback(self, request, response):
         response.output.pos_x = random.uniform(-4.0, 4.0)
         response.output.pos_z = random.uniform(-4.0, 4.0)
-        
+        self.get_logger().info('I heard: ')
         return response
 
 

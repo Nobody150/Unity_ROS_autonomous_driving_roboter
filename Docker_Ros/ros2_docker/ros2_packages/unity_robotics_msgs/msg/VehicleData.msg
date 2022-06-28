@@ -1,0 +1,4 @@
+int16 steeringangle
+int16 motorleftforce
+int16 motorrightforce
+int16 breakforce
