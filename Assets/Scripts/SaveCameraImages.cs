@@ -10,7 +10,8 @@ public class SaveCameraImages : MonoBehaviour
     // Publish the cube's position and rotation every N seconds
     public float saveImageFrequency = 1.0f;
 
-    public bool SaveImagesToFile;
+    private CarController carController;
+    public bool SaveSimulationData;
     public int resultionWidth = 848;
     public int resultionHeight = 480;
     
@@ -18,7 +19,7 @@ public class SaveCameraImages : MonoBehaviour
     private float timeElapsed;
 
     private string time;
-    private float counter = 0;
+    private float counter = 1;
 
     public Camera sensorCamera;
      private RenderTexture renderTexture;
@@ -26,7 +27,8 @@ public class SaveCameraImages : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(SaveImagesToFile){
+        carController = gameObject.GetComponent<CarController>();
+        if(SaveSimulationData){
             renderTexture = new RenderTexture(resultionWidth, resultionHeight, 24);
             renderTexture.Create();
             //AssetDatabase.CreateFolder("Assets/SimulationData", System.DateTime.Now+"");
@@ -40,14 +42,22 @@ public class SaveCameraImages : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SaveImagesToFile){
+        if(SaveSimulationData){
             timeElapsed += Time.deltaTime;
             if (timeElapsed > saveImageFrequency) {
                 CaptureScreenshot();
+                SaveInputToFile();
                 counter++;
                 timeElapsed = 0;
             }
         }
+    }
+
+    
+    void SaveInputToFile(){
+        StreamWriter file = new StreamWriter("./SimulationData/Data"+ time +".csv", append: true);
+        file.Write("camera_"+ counter +".png"+";"+carController.currentSteerAngle+";"+ carController.currentmotorForce + ";" + carController.currentbreakForce + ";\n");
+        file.Close();
     }
 
     private void CaptureScreenshot()

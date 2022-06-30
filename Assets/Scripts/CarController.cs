@@ -12,20 +12,12 @@ public class CarController : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
-    private float currentSteerAngle;
-    private float currentbreakForce;
-    private float currentmotorForce;
+    public float currentSteerAngle;
+    public float currentbreakForce;
+    public float currentmotorForce;
     private bool isBreaking;
 
     InputMaster inputMaster;
-
-    public Boolean SaveSimulationData;
-
-    // Publish the cube's position and rotation every N seconds
-    public float saveDataFrequency = 1.0f;
-
-    // Used to determine how much time has elapsed since the last message was published
-    private float timeElapsed;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
@@ -48,12 +40,6 @@ public class CarController : MonoBehaviour
     private float right;
     private string time;
 
-    void Start()
-    {
-        //AssetDatabase.CreateFolder("Assets/SimulationData", System.DateTime.Now+"");
-        time = System.DateTime.Now+"";
-        time = time.Replace(":", "_");
-    }
 
     void Awake(){
         inputMaster = new InputMaster();
@@ -85,22 +71,9 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheels();
-        
-        SaveInputToFile(SaveSimulationData);
     }
 
 public int conuter;
-    void SaveInputToFile(Boolean SaveSimulationData){
-        if (SaveSimulationData){
-            timeElapsed += Time.deltaTime;
-            if (timeElapsed > saveDataFrequency) {
-                StreamWriter file = new StreamWriter("./SimulationData/Data"+ time +".csv", append: true);
-                file.Write(currentSteerAngle+";"+ currentmotorForce + ";" + currentbreakForce + ";\n");
-                file.Close();
-                conuter++;
-            }
-        }
-    }
 
     void OnEnable(){
         inputMaster.Car.Enable();
